@@ -31,34 +31,11 @@
         </tr>
       </table>
 
-      <table>
-          <% @book.book_comments.each do |book_comment| %>
-          <tr>
-            <td>
-              <%= link_to user_path(book_comment.user) do %>
-                <%= image_tag book_comment.user.get_profile_image, size:"100x100" %><br>
-                <%= book_comment.user.name %>
-              <% end %>
-            </td>
-            <td><%= book_comment.comment %></td>
-            <% if book_comment.user == current_user %>
-              <td><%= link_to "削除", book_book_comment_path(book_comment.book, book_comment), method: :delete, data: { confirm: '本当に削除しますか？'}, class: "btn btn-sm btn-danger" %></td>
-            <% end %>
-          <% end %>
-        </tr>
-      </table>
+      <!--コメント一覧-->
+      <%= render 'book_comments/index', book: @book %>
 
-
-
-      <div>
-        <%= form_with model: [@book, @book_comment] do |f| %>
-          <%= render 'layouts/errors', obj: f.object %>
-          <div class="form-group">
-            <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-          </div>
-          <%= f.submit "送信する" %>
-        <% end %>
-      </div>
+      <!--コメントフォーム-->
+      <%= render 'book_comments/form', book: @book, book_comment: @book_comment %>
 
     </div>
   </div>
