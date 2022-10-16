@@ -12,10 +12,11 @@
         <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
         <td><%= user.name %></td>
 
-        <!--フォロー数・フォロワー数表示ここに-->
+        <!--フォロー数・フォロワー数表示機能-->
         <td>フォロー数: <%= user.followings.count %></td>
         <td>フォロワー数: <%= user.followers.count %></td>
 
+        <!--フォロー機能-->
         <% unless user == current_user %>
           <td>
             <% if current_user.following?(user) %>
