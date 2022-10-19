@@ -20,7 +20,7 @@
 
           <!--いいね機能-->
           <td id="favorite_buttons_<%= @book.id %>">
-            <%= render "favorites/favorite", book: @book %>
+            <%= render "favorites/favorite-btn", book: @book %>
           </td>
 
           <td>コメント数:<%= @book.book_comments.count %></td>
@@ -31,11 +31,11 @@
         </tr>
       </table>
 
-      <!--コメント一覧-->
-      <%= render 'book_comments/index', book: @book %>
+      <!--コメント機能-->
+      <div id="comments-area">
+        <%= render 'book_comments/comment', book: @book, book_comment: @book_comment %>
+      </div>
 
-      <!--コメントフォーム-->
-      <%= render 'book_comments/form', book: @book, book_comment: @book_comment %>
 
     </div>
   </div>
