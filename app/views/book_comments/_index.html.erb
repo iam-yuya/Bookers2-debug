@@ -1,0 +1,17 @@
+  <% book.book_comments.each do |book_comment| %>
+    <% book_comment_user = book_comment.user %>
+    <tr>
+      <td>
+        <%= link_to user_path(book_comment.user), class: "user_#{book_comment_user.id}" do %>
+          <%= image_tag book_comment.user.get_profile_image, size:"100x100" %><br>
+          <%= book_comment.user.name %>
+        <% end %>
+      </td>
+      <td><%= book_comment.comment %></td>
+      <% if book_comment.user == current_user %>
+        <td><%= link_to "削除", book_book_comment_path(book_comment.book_id, book_comment.id), method: :delete, remote: true, data: { confirm: '本当に削除しますか？'}, class: "btn btn-sm btn-danger" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+
+

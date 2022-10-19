@@ -6,16 +6,18 @@
       <h2 class="mt-3">New book</h2>
       <%= render 'form', book: @book_new %>
     </div>
+
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
   		<table class='table'>
-  		  <tr>
-          <td><%= link_to(@book.user) do %>
-            <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
-            <%= @book.user.name %>
+  		  <tr id="book_<%= @book.id %>">
+          <td>
+            <%= link_to user_path(@book.user) do %>
+              <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
+              <%= @book.user.name %>
             <% end %>
           </td>
-          <td><%= link_to @book.title, @book %></td>
+          <td><%= link_to @book.title, book_path(@book) %></td>
           <td><%= @book.body %></td>
 
           <!--いいね機能-->
@@ -23,18 +25,24 @@
             <%= render "favorites/favorite-btn", book: @book %>
           </td>
 
-          <td>コメント数:<%= @book.book_comments.count %></td>
+          <td class="comments-count">コメント数:<%= @book.book_comments.count %></td>
+
           <% if @user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
-            <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+            <td><%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
         </tr>
       </table>
 
       <!--コメント機能-->
-      <div id="comments-area">
-        <%= render 'book_comments/comment', book: @book, book_comment: @book_comment %>
-      </div>
+      <table class="book_comments">
+        <%= render 'book_comments/index', book: @book %>
+      </table>
+
+      <%= form_with model: [@book, @book_comment], local: false do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "w-100" %>
+          <%= f.submit "送信する" %>
+      <% end %>
 
 
     </div>
