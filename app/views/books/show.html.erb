@@ -34,16 +34,16 @@
         </tr>
       </table>
 
-      <!--コメント機能-->
+      <!--コメント一覧-->
       <table class="book_comments">
         <%= render 'book_comments/index', book: @book %>
       </table>
 
+      <!--コメントフォーム-->
       <%= form_with model: [@book, @book_comment], local: false do |f| %>
           <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "w-100" %>
           <%= f.submit "送信する" %>
       <% end %>
-
 
     </div>
   </div>

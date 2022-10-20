@@ -1,3 +1,7 @@
 $("#book_<%= @book.id %> .comments-count").html("コメント数: <%= @book.book_comments.count %>");
 $(".book_comments").html("<%= j(render 'book_comments/index', book: @book) %>");
 $("#book_comment_comment").val("");
+<!-- ↑ コード自体にidは見えませんが、-->
+<!--form_withを用いた際、input要素（入力エリア）には自動でモデル名_カラム名というidが付与されます。-->
+<!--モデル名がbook_comment、カラム名がcommentなので、book_comment_commentというidになります。-->
+<!--デベロッパーツールで確認すると分かりやすいです。-->
