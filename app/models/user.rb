@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :favorited_books, through: :favorites, source: :book
   has_many :book_comments, dependent: :destroy
 
+  # DM機能
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
+
   # フォローした、されたの関係
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
