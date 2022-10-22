@@ -12,6 +12,7 @@ class User < ApplicationRecord
   # DM機能
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_many :rooms, through: :entries
 
   # フォローした、されたの関係
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
