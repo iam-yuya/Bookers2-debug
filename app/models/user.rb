@@ -14,6 +14,9 @@ class User < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :rooms, through: :entries
 
+  # 閲覧数表示機能
+  has_many :view_counts, dependent: :destroy
+
   # フォローした、されたの関係
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
