@@ -7,7 +7,6 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @book_comment = BookComment.new
     # 閲覧表示機能
-
     unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
       current_user.view_counts.create(book_id: @book.id)
     end
@@ -15,10 +14,13 @@ class BooksController < ApplicationController
 
 
   def index
+    to  = Time.current.at_end_of_day #現在時刻を取得。at_end_of_dayは1日の終わりを23:59に設定している。
+    from  = (to - 6.day).at_beginning_of_day #at_beginning_of_day　は1日の始まりの時刻を0:00に設定している。
+    @books = Book.all.sort {|a,b|
+      b.favorites.where(created_at: from...to).size <=>
+      a.favorites.where(created_at: from...to).size
+    } #bを先に記述してるので降順（多い順）に並び変えができる
     @book = Book.new
-    @books = Book.all
-    @user = current_user
-    @books = Book.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
   end
 
 
