@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :favorited_books, through: :favorites, source: :book
   has_many :book_comments, dependent: :destroy
 
+  # グループ機能
+  has_many :group_users
+  has_many :groups, through: :group_users
+
   # DM機能
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy

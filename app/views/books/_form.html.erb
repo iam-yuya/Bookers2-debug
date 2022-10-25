@@ -8,7 +8,28 @@
     <%= f.label :opinion %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
+
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>
+
+  <!--星レビュー機能ここから-->
+  <div class="form-group row" id="star">
+    <%= f.label :star, '評価', class: 'col-md-3 col-form-label' %>
+    <%= f.hidden_field :star, id: :review_star %>
+  </div>
+
+  <script>
+  $('#star').empty();
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    scoreName: 'book[star]',
+    half: false,
+  });
+  </script>
+
+  <!--ここまで-->
 <% end %>
+

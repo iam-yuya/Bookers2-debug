@@ -14,6 +14,7 @@ class BooksController < ApplicationController
 
 
   def index
+    #いいね数のランキング機能
     to  = Time.current.at_end_of_day #現在時刻を取得。at_end_of_dayは1日の終わりを23:59に設定している。
     from  = (to - 6.day).at_beginning_of_day #at_beginning_of_day　は1日の始まりの時刻を0:00に設定している。
     @books = Book.all.sort {|a,b|
@@ -62,7 +63,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :profile_image)
+    params.require(:book).permit(:title, :body, :star)
   end
 
 
