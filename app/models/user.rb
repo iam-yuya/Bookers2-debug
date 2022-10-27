@@ -10,8 +10,7 @@ class User < ApplicationRecord
   has_many :book_comments, dependent: :destroy
 
   # グループ機能
-  has_many :group_users
-  has_many :groups, through: :group_users
+  has_many :group_users, dependent: :destroy
 
   # DM機能
   has_many :messages, dependent: :destroy

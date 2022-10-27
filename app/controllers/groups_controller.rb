@@ -32,6 +32,7 @@ class GroupsController < ApplicationController
 
 
   def edit
+    @group = Group.find(params[:id])
   end
 
 
@@ -39,7 +40,7 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to groups_path
     else
-      render :edit
+      render "edit"
     end
   end
 
@@ -47,7 +48,7 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :introduction, :image, :image_id, :owner_id)
+    params.require(:group).permit(:name, :introduction, :image)
   end
 
   def ensure_correct_user
