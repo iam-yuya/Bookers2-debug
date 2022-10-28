@@ -22,16 +22,18 @@ class GroupsController < ApplicationController
 
   def join
     @group = Group.find(params[:group_id])
-    @group = group.users << current_user
+    @group.users << current_user
     redirect_to groups_path
   end
+
 
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
     @group.users << current_user
+    # ↑この記述によってグループ作成者がメンバーに含まれる
     if @group.save
-      redirect_to groups_path
+      redirect_to groups_path, notice: "You have created group successfully."
     else
       render 'new'
     end
@@ -45,7 +47,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to groups_path
+      redirect_to groups_path, notice: "You have updated group successfully."
     else
       render "edit"
     end
@@ -54,6 +56,7 @@ class GroupsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:id])
+    #current_userは、@group.usersから消されるという記述。
     @group.users.delete(current_user)
     redirect_to groups_path
   end
