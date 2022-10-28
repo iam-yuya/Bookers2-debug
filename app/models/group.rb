@@ -3,16 +3,18 @@ class Group < ApplicationRecord
   belongs_to :owner, class_name: 'User'
   has_many :group_users, dependent: :destroy
 
+  has_many :users, through: :group_users
+  # ↑これを書き足したらEditリンク踏めるようになった
+
   validates :name, presence: true
   validates :introduction, presence: true
-
 
   def get_image
     (image.attached?) ? image : 'no_image.jpg'
   end
 
   def is_owned_by?(user)
-    owner.id == user.id
+    owner_id == user.id
   end
 
 end

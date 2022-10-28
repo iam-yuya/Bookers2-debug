@@ -11,14 +11,19 @@ class User < ApplicationRecord
 
   # グループ機能
   has_many :group_users, dependent: :destroy
+  has_many :groups, through: :group_users
+    # ↑これを書き足したらEditリンク踏めるようになった
+
 
   # DM機能
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :rooms, through: :entries
 
+
   # 閲覧数表示機能
   has_many :view_counts, dependent: :destroy
+
 
   # フォローした、されたの関係
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy

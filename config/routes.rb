@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   resources :messages, only: [:show, :create]
   resources :rooms, only: [:create, :show]
 
-  resources :groups, only: [:new, :index, :show, :create, :edit, :update]
+  resources :groups do
+    get "join" => "groups#join"
+  end
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
