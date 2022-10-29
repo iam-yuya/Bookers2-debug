@@ -31,7 +31,8 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
     @group.users << current_user
-    # ↑この記述によってグループ作成者がメンバーに含まれる
+    # ↑ @group.usersにcurrent_userを追加している
+    # この記述によってグループ作成者がメンバーに含まれる
     if @group.save
       redirect_to groups_path, notice: "You have created group successfully."
     else
