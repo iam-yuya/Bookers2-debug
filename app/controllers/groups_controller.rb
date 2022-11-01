@@ -20,13 +20,6 @@ class GroupsController < ApplicationController
   end
 
 
-  def join
-    @group = Group.find(params[:group_id])
-    @group.users << current_user
-    redirect_to groups_path
-  end
-
-
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
@@ -54,13 +47,6 @@ class GroupsController < ApplicationController
     end
   end
 
-
-  def destroy
-    @group = Group.find(params[:id])
-    #current_userは、@group.usersから消されるという記述。
-    @group.users.delete(current_user)
-    redirect_to groups_path
-  end
 
 
   private

@@ -13,8 +13,14 @@ class Group < ApplicationRecord
     (image.attached?) ? image : 'no_image.jpg'
   end
 
+
   def is_owned_by?(user)
     owner_id == user.id
+  end
+
+
+  def includeUser?(user)
+    group_users.exists?(user_id: user.id)
   end
 
 end
