@@ -1,0 +1,33 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th>今日の投稿数</th>
+      <th>前日の投稿数投稿数</th>
+      <th>前日比</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= current_user.books.where('created_at > ?', Date.today).count %></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th>今週の投稿数</th>
+      <th>前週の投稿数投稿数</th>
+      <th>前週比</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  </tbody>
+</table>

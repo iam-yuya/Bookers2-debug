@@ -10,6 +10,10 @@ class BooksController < ApplicationController
     unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
       current_user.view_counts.create(book_id: @book.id)
     end
+
+    #投稿記録機能
+    @today_book = @books.created_today
+    @yesterday_book = @books.created_yesterday
   end
 
 
