@@ -22,13 +22,6 @@ class BooksController < ApplicationController
       a.favorites.where(created_at: from...to).size
     } #bを先に記述してるので降順（多い順）に並び変えができる
     @book = Book.new
-
-    #投稿記録機能
-    @book_count = Book.all
-    @today_book = @book_count.created_today
-    @yesterday_book = @book_count.created_yesterday
-    @this_week_book = @book_count.created_this_week
-    @last_week_book = @book_count.created_last_week
   end
 
 
