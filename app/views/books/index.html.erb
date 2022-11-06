@@ -9,8 +9,8 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'index', books: @books%>
-      
-      <%= render 'count', books: @books %>
+
+      <%= render 'count', today_book: @today_book, yesterday_book: @yesterday_book, this_week_book: @this_week_book, last_week_book: @last_week_book %>
     </div>
   </div>
 </div>

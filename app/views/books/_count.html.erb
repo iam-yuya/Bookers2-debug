@@ -10,9 +10,16 @@
 
   <tbody>
     <tr>
-      <td><%= current_user.books.where('created_at > ?', Date.today).count %></td>
-      <td></td>
-      <td></td>
+      <td><%= today_book.count %></td>
+      <td><%= yesterday_book.count %></td>
+      <% if yesterday_book.count == 0 %>
+        <td>前日の投稿はありません</td>
+      <% else %>
+        <td>
+          <% the_day_before = today_book.count / yesterday_book.count.to_f %>
+          <%= (the_day_before * 100).round %>%
+        </td>
+      <% end %>
     </tr>
   </tbody>
 </table>
@@ -28,6 +35,17 @@
   </thead>
 
   <tbody>
-
+    <tr>
+      <td><%= this_week_book.count %></td>
+      <td><% last_week_book.count %></td>
+      <% if last_week_book.count == 0 %>
+        <td>先週の投稿はありません</td>
+      <% else %>
+        <td>
+          <% the_week_before = this_week_book.count / last_week_book.count.to_f %>
+          <%= (the_week_before * 100).round %>%
+        </td>
+      <% end %>
+    </tr>
   </tbody>
 </table>
