@@ -1,0 +1,29 @@
+<h3>7日間分の投稿数</h3>
+<div class="table_width">
+  <table class='table table-bordered'>
+    <thead>
+      <tr>
+        <th>6日前</th>
+        <th>5日前</th>
+        <th>4日前</th>
+        <th>3日前</th>
+        <th>2日前</th>
+        <th>1日前</th>
+        <th>今日</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><%= @books.created_6days.count %></td>
+        <td><%= @books.created_5days.count %></td>
+        <td><%= @books.created_4days.count %></td>
+        <td><%= @books.created_3days.count %></td>
+        <td><%= @books.created_2days.count %></td>
+        <td><%= @yesterday_book.count %></td>
+        <td><%= @today_book.count %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
