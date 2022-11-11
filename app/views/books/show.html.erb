@@ -27,21 +27,8 @@
 
           <td class="comments-count">コメント数:<%= @book.book_comments.count %></td>
 
-          <!--評価機能ここから-->
-          <td>
-            <div id="star-rate<%= @book.id%>"></td>
-             <script>
-              $('#star-rate<%= @book.id %>').empty();
-              $('#star-rate<%= @book.id%>').raty({
-                 size      : 36,
-                 starOff   : '<%= asset_path('star-off.png') %>',
-                 starOn    : '<%= asset_path('star-on.png') %>',
-                 half      : false,
-                 readOnly: true,
-                 score: <%= @book.star %>,
-               });
-             </script>
-          </td>
+          <!--評価機能-->
+          <td><%= render "static_rate", book: @book %></td>
 
 
 

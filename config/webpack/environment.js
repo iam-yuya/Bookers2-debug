@@ -10,6 +10,12 @@ environment.plugins.prepend(
   })
 )
 
-
+window.$ = window.jQuery = require('jquery');
 
 module.exports = environment
+// ↑元の記述。下のは模範解答
+
+
+// const { environment } = require('@rails/webpacker')
+
+// module.exports = environment

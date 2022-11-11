@@ -9,27 +9,41 @@
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
 
+
+
+  <!--星レビュー機能ここから-->
+  
+  <% if book.id === nil %>
+    <div class="form-group row" id="star">
+      <%= f.label :rate %>
+      <%= f.hidden_field :rate, id: :review_star, class: 'form-control' %>
+    </div>
+  
+    <div id="post_raty"></div>
+    <script>
+      $(document).on('turbolinks:load', function() {
+      let raty_elem = document.querySelector('#post_raty');
+      raty_elem.innerHTML = ""
+      let option = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'book[rate]',
+        };
+      raty(raty_elem,option);
+     });
+    </script>
+    
+    
+  <% else %>
+    <%= render "static_rate", book: book %>
+  <% end %>
+  
+  <!--ここまで-->
+
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>
 
-  <!--星レビュー機能ここから-->
-  <div class="form-group row" id="star">
-    <%= f.label :star, '評価', class: 'col-md-3 col-form-label' %>
-    <%= f.hidden_field :star, id: :review_star %>
-  </div>
-
-  <script>
-  $('#star').empty();
-  $('#star').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    scoreName: 'book[star]',
-    half: false,
-  });
-  </script>
-
-  <!--ここまで-->
 <% end %>
 
