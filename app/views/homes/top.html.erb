@@ -10,7 +10,10 @@
           <%= link_to 'Log in',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
         </div>
         <div class="row">
-          <%= link_to 'Sign Up',new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+          <%= link_to 'Sign Up',new_user_registration_path, class: "btn btn-success btn-sm btn-block mb-3 sign_up" %>
+        </div>
+        <div class="row">
+          <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "btn btn-primary btn-sm btn-block" %>
         </div>
       </div>
     </div>
