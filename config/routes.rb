@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get "homes/about"=>"homes#about"
   get "search" => "searches#search"
-  devise_for :users
+  
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
 
   resources :books, only: [:index, :show, :edit, :create, :destroy, :update] do
     resources :book_comments, only: [:create, :destroy]
